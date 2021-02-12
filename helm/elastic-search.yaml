@@ -129,11 +129,8 @@ podSecurityPolicy:
 persistence:
   enabled: true
   accessMode: ReadWriteOnce
-  name: 
-  labels:
-    # Add default labels for the volumeClaimTemplate of the StatefulSet
-    enabled: true
-  annotations: {}
+  size: "5Gi"
+  storageClass: "nfs-storageclass"
 
 extraVolumes: []
   # - name: extras
