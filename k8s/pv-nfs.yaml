@@ -11,5 +11,5 @@ spec:
   accessModes:
     - ReadWriteOnce
   nfs:
-    server: 172.20.2.77
+    server: 172.20.2.219
     path: "/shared"
