@@ -28,7 +28,7 @@ yum -y install haproxy
 
 cat <<EOF | sudo tee /etc/haproxy/haproxy.cfg 
 frontend kubernetes
-    bind 172.20.2.219:6443
+    bind 172.20.2.46:6443
     option tcplog
     mode tcp
     timeout connect 10s
@@ -40,9 +40,9 @@ backend kubernetes-master-nodes
     mode tcp
     balance roundrobin
     option tcp-check
-    server master-1 172.20.2.10:6443 check fall 3 rise 2
-    server master-2 172.20.2.76:6443 check fall 3 rise 2
-    server master-3 172.20.2.102:6443 check fall 3 rise 2    
+    server master-1 172.20.2.60:6443 check fall 3 rise 2
+    server master-2 172.20.2.82:6443 check fall 3 rise 2
+    server master-3 172.20.2.153:6443 check fall 3 rise 2    
 EOF
 
 setsebool -P haproxy_connect_any=1
