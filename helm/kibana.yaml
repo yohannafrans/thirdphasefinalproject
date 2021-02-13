@@ -1,5 +1,5 @@
 ---
-elasticsearchHosts: "http://elasticsearch-master:9200"
+elasticsearchHosts: "http://mykibana-logging:9200"
 
 replicas: 1
 
@@ -35,8 +35,7 @@ hostAliases: []
 #  - "bar.local"
 
 image: "docker.elastic.co/kibana/kibana"
-imageTag: "8.0.0-SNAPSHOT"
-imagePullPolicy: "IfNotPresent"
+imageTag: "7.10.2"
 
 # additionals labels
 labels: {}
@@ -46,11 +45,11 @@ podAnnotations: {}
 
 resources:
   requests:
-    cpu: "1000m"
-    memory: "2Gi"
+    cpu: "512m"
+    memory: "1500Mi"
   limits:
-    cpu: "1000m"
-    memory: "2Gi"
+    cpu: "512m"
+    memory: "1500Mi"
 
 protocol: http
 
@@ -122,7 +121,7 @@ ingress:
     # kubernetes.io/tls-acme: "true"
   path: /
   hosts:
-    - kibana.yohanna.local
+    - kibana.yohanna.local.com
   # tls: []
   #  - secretName: chart-example-tls
   #    hosts:

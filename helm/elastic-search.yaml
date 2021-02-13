@@ -59,8 +59,7 @@ hostAliases: []
 #  - "bar.local"
 
 image: "docker.elastic.co/elasticsearch/elasticsearch"
-imageTag: "8.0.0-SNAPSHOT"
-imagePullPolicy: "IfNotPresent"
+imageTag: "7.10.2"
 
 podAnnotations: {}
   # iam.amazonaws.com/role: es-cluster
@@ -72,11 +71,11 @@ esJavaOpts: "-Xmx1g -Xms1g"
 
 resources:
   requests:
-    cpu: "1000m"
-    memory: "2Gi"
+    cpu: "512m"
+    memory: "1500Mi"
   limits:
-    cpu: "1000m"
-    memory: "2Gi"
+    cpu: "512m"
+    memory: "1500Mi"
 
 initResources: {}
   # limits:
