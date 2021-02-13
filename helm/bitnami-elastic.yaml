@@ -186,7 +186,7 @@ master:
   name: master
   ## Number of master-eligible node(s) replicas to deploy
   ##
-  replicas: 2
+  replicas: 1
 
   ## updateStrategy for ElasticSearch master statefulset
   ## ref: https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/#update-strategies
@@ -376,7 +376,7 @@ master:
 coordinating:
   ## Number of coordinating-only node(s) replicas to deploy
   ##
-  replicas: 2
+  replicas: 1
 
   ## Deployment pod host aliases
   ## https://kubernetes.io/docs/concepts/services-networking/add-entries-to-pod-etc-hosts-with-host-aliases/
@@ -524,7 +524,7 @@ data:
   name: data
   ## Number of data node(s) replicas to deploy
   ##
-  replicas: 2
+  replicas: 1
   ## Deployment pod host aliases
   ## https://kubernetes.io/docs/concepts/services-networking/add-entries-to-pod-etc-hosts-with-host-aliases/
   ##
@@ -691,7 +691,7 @@ ingest:
   name: ingest
   ## Number of ingest node(s) replicas to deploy
   ##
-  replicas: 2
+  replicas: 1
   heapSize: 128m
   ## Provide annotations for the ingest pods.
   ##
