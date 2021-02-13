@@ -1,5 +1,5 @@
 ---
-elasticsearchHosts: "http://mykibana-logging:9200"
+elasticsearchHosts: "http://mykibana.logging.svc:9200"
 
 replicas: 1
 
