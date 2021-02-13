@@ -16,7 +16,7 @@ roles:
   ml: "true"
 
 replicas: 1
-minimumMasterNodes: 2
+minimumMasterNodes: 1
 
 esMajorVersion: ""
 
@@ -100,7 +100,7 @@ volumeClaimTemplate:
   storageClassName: "nfs-storageclass"
   resources:
     requests:
-      storage: 30Gi
+      storage: 5Gi
 
 rbac:
   create: false
