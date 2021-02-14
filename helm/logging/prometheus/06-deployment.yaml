@@ -1,0 +1,44 @@
+# Source: prometheus/templates/04-deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: prometheus-deployment
+  namespace: monitoring
+spec:
+  selector:
+    matchLabels:
+      app: prometheus-server
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: prometheus-server
+    spec:
+      containers:
+      - name: prometheus
+        image: prom/prometheus:v2.15.0
+        args:
+        - "--config.file=/etc/prometheus/prometheus.yml"
+        - "--storage.tsdb.path=/prometheus/"
+        ports:
+        - containerPort: 9090
+        volumeMounts:
+        - name: prometheus-config-volume
+          mountPath: /etc/prometheus/
+        - name: prometheus-storage-volume
+          mountPath: /prometheus/
+        resources:
+          limits:
+            cpu: 500m
+            memory: 1Gi
+          requests:
+            cpu: 128m
+            memory: 800Mi
+      volumes:
+      - name: prometheus-config-volume
+        configMap:
+          defaultMode: 420
+          name: prometheus-server-conf
+      - name: prometheus-storage-volume
+        persistentVolumeClaim:
+          claimName: prometheus-tsdb

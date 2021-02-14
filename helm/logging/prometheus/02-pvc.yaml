@@ -1,0 +1,13 @@
+# Source: prometheus/templates/01-pvc.yaml
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: prometheus-tsdb
+  namespace: monitoring
+spec:
+  storageClassName: nfs-storageclass
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 3Gi
