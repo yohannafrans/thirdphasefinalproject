@@ -1,0 +1,9 @@
+# Source: bliblimart-frontend/templates/02-configmap.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: "bliblimart-frontend-configmap"
+  namespace: bliblimart-frontend
+data:
+  .env: |-
+    # env

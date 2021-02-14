@@ -1,0 +1,8 @@
+# Source: alertmanager/templates/02-alert-template-config-map.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: alertmanager-templates
+  namespace: monitoring
+data:
+  slack.tmpl: |-

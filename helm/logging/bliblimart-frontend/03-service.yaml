@@ -1,0 +1,13 @@
+# Source: bliblimart-frontend/templates/04-service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: bliblimart-frontend
+  namespace: bliblimart-frontend
+spec:
+  selector:
+    app: bliblimart-frontend
+  type: ClusterIP
+  ports:
+    - port: 80
+      targetPort: 80

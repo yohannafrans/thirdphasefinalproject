@@ -1,0 +1,12 @@
+# Source: node-exporter/templates/02-service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: node-exporter
+spec:
+  selector:
+    name: node-exporter
+  ports:
+    - protocol: TCP
+      port: 9100
+      targetPort: 9100

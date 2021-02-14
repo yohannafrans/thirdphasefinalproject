@@ -1,0 +1,21 @@
+# Source: alertmanager/templates/01-config-map.yaml
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: alertmanager-config
+  namespace: monitoring
+data:
+  config.yml: |-
+    global:
+    templates:
+    - '/etc/alertmanager-templates/*.tmpl'
+    route:
+      receiver: slack
+      group_by: ['job']
+      group_wait: 10s
+      repeat_interval: 5m
+    receivers:
+      - name: slack
+        slack_configs:
+          - api_url: https://hooks.slack.com/services/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
+            channel: '#kubernetes-alertmanager'

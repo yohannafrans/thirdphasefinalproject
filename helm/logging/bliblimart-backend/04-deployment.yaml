@@ -1,0 +1,44 @@
+# Source: bliblimart-backend/templates/03-deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "bliblimart-backend-deployment"
+  namespace: bliblimart-backend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: bliblimart-backend
+  template:
+    metadata:
+      name: bliblimart-backend
+      labels:
+        app: bliblimart-backend
+    spec:
+      containers:
+      - name: bliblimart-backend
+        image: "kmdr7/bliblimart-backend:1.0.1"
+        imagePullPolicy: Always
+        ports:
+        - name: app
+          containerPort: 8080
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "256m"
+          limits:
+            memory: "256Mi"
+            cpu: "256m"
+        volumeMounts:
+        - mountPath: /app/application.properties
+          subPath: application.properties
+          name: config-storage
+      volumes:
+      - name: config-storage
+        configMap:
+          defaultMode: 420
+          name: "bliblimart-backend-configmap"
+      tolerations:
+      - key: node-role.kubernetes.io/master
+        operator: Exists
+        effect: NoSchedule

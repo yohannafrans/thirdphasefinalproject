@@ -1,0 +1,26 @@
+# Source: bliblimart-frontend/templates/05-ingress.yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: "bliblimart-frontend-ingress"
+  namespace: bliblimart-frontend
+  annotations:
+    # ingress.kubernetes.io/ssl-redirect: "true"
+    # cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    kubernetes.io/ingress.class: "nginx"
+spec:
+  # tls:
+  #   - hosts:
+  #     - bliblimart.yohanna.com
+  #     secretName: letsencrypt-prod-issuer
+  rules:
+  - host: bliblimart.yohanna.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: bliblimart-frontend
+            port:
+              number: 80

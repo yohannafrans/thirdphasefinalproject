@@ -1,0 +1,5 @@
+# Source: bliblimart-backend/templates/01-namespace.yaml
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: bliblimart-backend
