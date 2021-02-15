@@ -1,5 +1,5 @@
 ---
-elasticsearchHosts: "http://elasticsearch-master.logging.svc:9200"
+elasticsearchHosts: "http://elasticsearch-master.logging:9200"
 replicas: 1
 
 image: "docker.elastic.co/kibana/kibana"
@@ -17,6 +17,15 @@ tolerations:
   - key: node-role.kubernetes.io/master
     operator: Exists
     effect: NoSchedule
+
+# httpPort: 5601
+
+# service:
+#   type: ClusterIP
+#   loadBalancerIP: ""
+#   port: 5601
+#   nodePort: ""
+#   httpPortName: http
 
 ingress:
   enabled: true

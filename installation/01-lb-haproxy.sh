@@ -22,7 +22,7 @@ firewall-cmd --add-port 4045/tcp --permanent
 firewall-cmd --add-port 4045/udp --permanent
 firewall-cmd --reload
 
-printf "Haproxy install"
+printf "Haproxy install for kube cluster and bastion host"
 
 yum -y install haproxy
 
@@ -42,7 +42,26 @@ backend kubernetes-master-nodes
     option tcp-check
     server master-1 172.20.2.162:6443 check fall 3 rise 2
     server master-2 172.20.2.82:6443 check fall 3 rise 2
-    server master-3 172.20.2.153:6443 check fall 3 rise 2    
+    server master-3 172.20.2.153:6443 check fall 3 rise 2
+
+frontend http
+    bind 172.20.2.46:80
+    option tcplog
+    mode tcp
+    timeout connect 10s
+    timeout client 1m
+    timeout server 1m
+    default_backend http-master
+
+backend http-master
+    mode tcp
+    balance roundrobin
+    option tcp-check
+    server master-1 172.20.2.162:30298 check fall 3 rise 2
+    server master-2 172.20.2.82:30298 check fall 3 rise 2
+    server master-3 172.20.2.153:30298 check fall 3 rise 2
+    server node-1 172.20.2.25:30298 check fall 3 rise 2
+    server node-2 172.20.2.152:30298 check fall 3 rise 2 
 EOF
 
 setsebool -P haproxy_connect_any=1
