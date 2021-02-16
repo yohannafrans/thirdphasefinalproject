@@ -8,3 +8,5 @@ helm repo add stable https://charts.helm.sh/stable
 helm repo add bitnami https://charts.bitnami.com/bitnami
 helm repo add elastic https://helm.elastic.co
 helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
+helm repo add dikacloud http://34.97.149.48:8088/
+helm repo add fluent https://fluent.github.io/helm-charts

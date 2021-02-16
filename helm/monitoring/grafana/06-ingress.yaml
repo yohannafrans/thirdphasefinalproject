@@ -10,10 +10,10 @@ metadata:
 spec:
   # tls:
   #   - hosts:
-  #     - grafana.yohanna.com
+  #     - grafana.yohanna.id
   #     secretName: letsencrypt-prod-grafana
   rules:
-  - host: grafana.yohanna.com
+  - host: grafana.yohanna.id
     http:
       paths:
       - path: /

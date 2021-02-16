@@ -1,13 +1,14 @@
 #!/bin/bash
 
 if [[ $EUID -ne 0 ]]; then
-   echo "This script must be run as root" 1>&2
+   echo "This script must be run as a root" 1>&2
    exit 1
 fi
 
 printf "Open firewall\n"
 
 firewall-cmd --add-port 6443/tcp --permanent
+
 firewall-cmd --reload
 
 printf "Haproxy install for bastion host"
@@ -33,7 +34,7 @@ EOF
 
 setsebool -P haproxy_connect_any=1
 
-printf "Restart"
+printf "Haproxy restart"
 service haproxy restart
 sudo systemctl start haproxy
 sudo systemctl enable haproxy

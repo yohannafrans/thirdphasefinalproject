@@ -22,7 +22,7 @@ firewall-cmd --add-port 4045/tcp --permanent
 firewall-cmd --add-port 4045/udp --permanent
 firewall-cmd --reload
 
-printf "Haproxy install for kube cluster and bastion host"
+printf "Haproxy install for LB HAproxy"
 
 yum -y install haproxy
 
@@ -61,7 +61,7 @@ backend http-master
     server master-2 172.20.2.82:30298 check fall 3 rise 2
     server master-3 172.20.2.153:30298 check fall 3 rise 2
     server node-1 172.20.2.25:30298 check fall 3 rise 2
-    server node-2 172.20.2.152:30298 check fall 3 rise 2 
+    server node-2 172.20.2.152:30298 check fall 3 rise 2
 EOF
 
 setsebool -P haproxy_connect_any=1

@@ -11,10 +11,10 @@ metadata:
 spec:
   # tls:
   #   - hosts:
-  #     - bliblimart-backend.yohanna.com
+  #     - bliblimart-backend.yohanna.id
   #     secretName: letsencrypt-prod-issuer
   rules:
-  - host: bliblimart-backend.yohanna.com
+  - host: bliblimart-backend.yohanna.id
     http:
       paths:
       - path: /

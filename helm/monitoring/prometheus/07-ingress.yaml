@@ -9,7 +9,7 @@ metadata:
     kubernetes.io/ingress.class: "nginx"
 spec:
   rules:
-  - host: prometheus.blimart.com
+  - host: prometheus.yohanna.id
     http:
       paths:
       - path: /
