@@ -10,3 +10,4 @@ helm repo add elastic https://helm.elastic.co
 helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
 helm repo add dikacloud http://34.97.149.48:8088/
 helm repo add fluent https://fluent.github.io/helm-charts
+helm repo add jetstack https://charts.jetstack.io

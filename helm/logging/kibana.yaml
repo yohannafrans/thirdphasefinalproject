@@ -18,19 +18,16 @@ tolerations:
     operator: Exists
     effect: NoSchedule
 
-# httpPort: 5601
-
-# service:
-#   type: ClusterIP
-#   loadBalancerIP: ""
-#   port: 5601
-#   nodePort: ""
-#   httpPortName: http
-
 ingress:
   enabled: true
   annotations:
+    # ingress.kubernetes.io/ssl-redirect: "true"
+    # cert-manager.io/cluster-issuer: "letsencrypt-staging"
     kubernetes.io/ingress.class: "nginx"
   path: /
   hosts:
     - kibana.yohanna.id
+  # tls:
+  #   - secretName: letsencrypt-staging
+  #     hosts:
+  #     - kibana.yohanna.id

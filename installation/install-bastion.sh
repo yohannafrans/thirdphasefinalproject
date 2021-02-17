@@ -30,6 +30,21 @@ backend http-lb
     balance roundrobin
     option tcp-check
     server loadbalancer 172.20.2.46:80 check fall 3 rise 2
+
+frontend https
+    bind *:443
+    option tcplog
+    mode tcp
+    timeout connect 10s
+    timeout client 1m
+    timeout server 1m
+    default_backend https-lb
+
+backend https-lb
+    mode tcp
+    balance roundrobin
+    option tcp-check
+    server loadbalancer 172.20.2.46:443 check fall 3 rise 2
 EOF
 
 setsebool -P haproxy_connect_any=1

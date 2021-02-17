@@ -1,0 +1,42 @@
+---
+clusterName: "elasticsearch"
+nodeGroup: "master"
+
+roles:
+  master: "true"
+  ingest: "true"
+  data: "true"
+  remote_cluster_client: "true"
+  ml: "false"
+
+replicas: 1
+minimumMasterNodes: 1
+clusterHealthCheckParams: 'wait_for_status=yellow&timeout=1s'
+
+esMajorVersion: "7"
+image: "docker.elastic.co/elasticsearch/elasticsearch"
+imageTag: "7.10.2"
+imagePullPolicy: "IfNotPresent"
+esJavaOpts: "-Xmx2g -Xms2g"
+
+resources:
+  requests:
+    cpu: "1000m"
+    memory: "3Gi"
+  limits:
+    cpu: "1000m"
+    memory: "3Gi"
+
+volumeClaimTemplate:
+  storageClassName: "nfs-storageclass"
+  accessModes: [ "ReadWriteOnce" ]
+  resources:
+    requests:
+      storage: 5Gi
+
+rbac:
+  create: true
+
+protocol: http
+httpPort: 9200
+transportPort: 9300

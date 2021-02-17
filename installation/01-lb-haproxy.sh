@@ -51,9 +51,9 @@ frontend http
     timeout connect 10s
     timeout client 1m
     timeout server 1m
-    default_backend http-master
+    default_backend http-cluster
 
-backend http-master
+backend http-cluster
     mode tcp
     balance roundrobin
     option tcp-check
@@ -62,6 +62,25 @@ backend http-master
     server master-3 172.20.2.153:30298 check fall 3 rise 2
     server node-1 172.20.2.25:30298 check fall 3 rise 2
     server node-2 172.20.2.152:30298 check fall 3 rise 2
+
+frontend https
+    bind 172.20.2.46:31694
+    option tcplog
+    mode tcp
+    timeout connect 10s
+    timeout client 1m
+    timeout server 1m
+    default_backend https-cluster
+
+backend https-cluster
+    mode tcp
+    balance roundrobin
+    option tcp-check
+    server master-1 172.20.2.162:31694 check fall 3 rise 2
+    server master-2 172.20.2.82:31694 check fall 3 rise 2
+    server master-3 172.20.2.153:31694 check fall 3 rise 2
+    server node-1 172.20.2.25:31694 check fall 3 rise 2
+    server node-2 172.20.2.152:31694 check fall 3 rise 2
 EOF
 
 setsebool -P haproxy_connect_any=1
